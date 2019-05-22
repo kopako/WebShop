@@ -9,13 +9,17 @@ import java.math.BigDecimal;
 public class Product {
     @Id
     @GeneratedValue
-    protected Integer id;
-    protected String name;
-    protected String description;
-    protected BigDecimal price;
+    private Integer id;
 
+    private String name;
+    private String description;
+    private BigDecimal price;
 
     public Product() {
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getName() {
