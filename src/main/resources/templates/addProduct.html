@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid">
+    <h1>Add product</h1>
+    <form action="#" th:action="@{/addProduct}" th:object="${product}" enctype="multipart/form-data" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" type="text" th:field="*{name}"/>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input id="description" type="text" th:field="*{description}"/>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input id="price" type="number" th:field="*{price}"/>
+        </div>
+
+        <div class="form-group">
+            <label for="image">Image</label>
+            <input id="image" type="file" name="multipartFile"/>
+        </div>
+
+        <button type="submit">Add product</button>
+    </form>
+</div>
+</body>
+</html>

@@ -4,17 +4,14 @@ import com.gmail.kopandima.webshop.models.Product;
 import com.gmail.kopandima.webshop.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 public class WebShopController {
 
-    final ProductService productService;
+    private final ProductService productService;
 
     @Autowired
     public WebShopController(ProductService productService) {
@@ -27,14 +24,13 @@ public class WebShopController {
     }
 
     @GetMapping("/")
-    public String index(Model model){
-        model.addAttribute("product", new Product());
+    public String index(){
         return "index";
     }
 
-    @PostMapping("/addProduct")
-    public String addProduct(@ModelAttribute Product product) {
-        productService.save(product);
+    @PostMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable int id){
+        productService.delete(productService.findById(id));
         return "redirect:/";
     }
 

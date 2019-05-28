@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<html xmlns:th="http://www.thymeleaf.org">
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 
 <head>
     <meta charset="UTF-8">
     <title>Main Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 <h1>MAIN PAGE</h1>
@@ -20,6 +19,8 @@
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
+            <th>Image</th>
+            <th>Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -27,19 +28,21 @@
             <td th:text="${pd.name}">Name of product</td>
             <td th:text="${pd.description}">description</td>
             <td th:text="${pd.price}">description</td>
+            <td><img id='base64image' style='display:block; width:100px;height:100px;'
+                     th:src="${pd.imageBase64 != ''}?'data:image/jpeg;base64, '+${pd.imageBase64} : @{/img/frog.png}"
+                     alt="" src="../static/img/frog.png"/></td>
+            <td>
+                <form action="#" th:action="@{/delete/{id}(id = ${pd.getId()})}" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>
 </div>
-</div>
 
-<div class="input-group">
-    <form action="#" th:action="@{/addProduct}" th:object="${product}" method="post">
-        <input type="text" th:field="*{name}"/>
-        <input type="text" th:field="*{description}"/>
-        <input type="number" th:field="*{price}"/>
-        <button type="submit" name="addRow">Add product</button>
-    </form>
+<div class="memberNameLink">
+    <a th:href="@{addProduct}" href="#">Add Product</a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

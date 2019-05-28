@@ -1,8 +1,8 @@
 package com.gmail.kopandima.webshop.models;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import java.math.BigDecimal;
 
 @Entity
@@ -14,6 +14,9 @@ public class Product {
     private String name;
     private String description;
     private BigDecimal price;
+
+    @Lob
+    private String imageBase64;
 
     public Product() {
     }
@@ -46,41 +49,12 @@ public class Product {
         this.price = price;
     }
 
-    public static final class ProductBuilder {
-        protected Integer id;
-        protected String name;
-        protected String description;
-        protected BigDecimal price;
+    public String getImageBase64() {
+        return imageBase64;
+    }
 
-        private ProductBuilder() {
-        }
-
-        public static ProductBuilder aProduct() {
-            return new ProductBuilder();
-        }
-
-        public ProductBuilder withName(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public ProductBuilder withDescription(String description) {
-            this.description = description;
-            return this;
-        }
-
-        public ProductBuilder withPrice(BigDecimal price) {
-            this.price = price;
-            return this;
-        }
-
-        public Product build() {
-            Product product = new Product();
-            product.setName(name);
-            product.setDescription(description);
-            product.setPrice(price);
-            product.id = this.id;
-            return product;
-        }
+    public void setImageBase64(String imageBase64) {
+        this.imageBase64 = imageBase64;
     }
 }
+

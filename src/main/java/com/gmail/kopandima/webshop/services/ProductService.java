@@ -4,8 +4,8 @@ import com.gmail.kopandima.webshop.models.Product;
 import com.gmail.kopandima.webshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
-import javax.persistence.EntityNotFoundException;
 
 @Service
 public class ProductService {
@@ -21,6 +21,15 @@ public class ProductService {
 
     public Iterable<Product> findAll() {
         return productRepository.findAll();
+    }
+
+    public Product findById(Integer id) {
+        if (productRepository.findById(id).isPresent()) {
+            return productRepository.findById(id).get();
+        } else {
+            System.out.println("No such entity with id");
+            return null;
+        }
     }
 
     public void save(Product product) {
