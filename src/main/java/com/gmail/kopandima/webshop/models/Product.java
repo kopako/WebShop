@@ -1,4 +1,5 @@
 package com.gmail.kopandima.webshop.models;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,6 +8,7 @@ import java.math.BigDecimal;
 
 @Entity
 public class Product {
+
     @Id
     @GeneratedValue
     private Integer id;

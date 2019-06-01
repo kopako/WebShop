@@ -13,8 +13,8 @@ xmlns:th="http://www.thymeleaf.org">
     <h1>Add product</h1>
     <form action="#" th:action="@{/addProduct}" th:object="${product}" enctype="multipart/form-data" method="post">
         <div class="form-group">
-            <label for="name">Name</label>
-            <input id="name" type="text" th:field="*{name}"/>
+            <label for="username">Name</label>
+            <input id="username" type="text" th:field="*{username}"/>
         </div>
         <div class="form-group">
             <label for="description">Description</label>
