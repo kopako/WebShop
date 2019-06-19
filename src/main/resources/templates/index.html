@@ -6,60 +6,70 @@
     <meta charset="UTF-8">
     <title>Main Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet"
+        crossorigin="anonymous" />
 </head>
+
 <body>
-<h1>MAIN PAGE</h1>
-<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-<form th:action="@{/login}" method="post">
-    <input type="submit" value="Sign In"/>
-</form>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
+    <div class="container">
 
-<div class="table">
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Image</th>
-            <th>Delete</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="pd : ${allProducts}">
-            <td th:text="${pd.name}">Name of product</td>
-            <td th:text="${pd.description}">description</td>
-            <td th:text="${pd.price}">description</td>
-            <td><img id='base64image' style='display:block; width:100px;height:100px;'
-                     th:src="${pd.imageBase64 != ''}?'data:image/jpeg;base64, '+${pd.imageBase64} : @{/img/frog.png}"
-                     alt="" src="../static/img/frog.png"/></td>
-            <td>
-                <form action="#" th:action="@{/delete/{id}(id = ${pd.getId()})}" method="POST">
-                    <button type="submit">Delete</button>
-                </form>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+        <h1>MAIN PAGE</h1>
+        <div class="col-md-5">
+            <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!guest</h1>
+        </div>
+        <div class="col-md-offset-2 ">
+            <form th:action="@{/login}" method="post">
+                <input type="submit" value="Sign In"/>
+            </form>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out"/>
+            </form>
+        </div>
 
-<div class="memberNameLink">
-    <a th:href="@{addProduct}" href="#">Add Product</a>
-</div>
+        <div class="table">
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="pd : ${allProducts}">
+                    <td th:text="${pd.name}">Name of product</td>
+                    <td th:text="${pd.description}">description</td>
+                    <td th:text="${pd.price}">description</td>
+                    <td><img id='base64image' style='display:block; width:100px;height:100px;'
+                            th:src="${pd.imageBase64 != ''}?'data:image/jpeg;base64, '+${pd.imageBase64} : @{/img/frog.png}"
+                            alt="" src="../static/img/noimage.jpg"/></td>
+                    <td>
+                        <form action="#" th:action="@{/delete/{id}(id = ${pd.getId()})}" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+        <div class="memberNameLink">
+            <a th:href="@{addProduct}" href="#">Add Product</a>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous"></script>
+    </div>
 </body>
 </html>

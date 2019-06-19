@@ -5,13 +5,15 @@ xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Add Product</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet"
+        crossorigin="anonymous" />
 </head>
 <body>
 <div class="container-fluid">
     <h1>Add product</h1>
-    <form action="#" th:action="@{/addProduct}" th:object="${product}" enctype="multipart/form-data" method="post">
+    <form class="" action="#" th:action="@{/addProduct}" th:object="${product}" enctype="multipart/form-data" method="post">
         <div class="form-group">
             <label for="username">Name</label>
             <input id="username" type="text" th:field="*{username}"/>
@@ -31,7 +33,7 @@ xmlns:th="http://www.thymeleaf.org">
             <input id="image" type="file" name="multipartFile"/>
         </div>
 
-        <button type="submit">Add product</button>
+        <button type="submit" class="btn btn-default">Add product</button>
     </form>
 </div>
 </body>
