@@ -11,13 +11,13 @@ import java.io.IOException;
 import java.util.Base64;
 
 @Controller
-@RequestMapping("/addProduct")
-public class AddProductController {
+@RequestMapping("/product/")
+public class ProductController {
 
     private final ProductService productService;
 
     @Autowired
-    public AddProductController(ProductService productService) {
+    public ProductController(ProductService productService) {
         this.productService = productService;
     }
 
@@ -27,19 +27,25 @@ public class AddProductController {
     }
 
 
-    @GetMapping
-    public String addProductForm(){
+    @GetMapping("add")
+    public String addForm(){
         return "addProduct";
     }
 
-    @PostMapping
-    public String addProduct(@ModelAttribute Product product, @RequestParam(value = "multipartFile") MultipartFile multipartFile) {
+    @PostMapping("add")
+    public String add(@ModelAttribute Product product, @RequestParam(value = "multipartFile") MultipartFile multipartFile) {
         try {
             product.setImageBase64(Base64.getEncoder().encodeToString(multipartFile.getBytes()));
         } catch (IOException e) {
             e.printStackTrace();
         }
         productService.save(product);
+        return "redirect:/";
+    }
+
+    @PostMapping("delete/{id}")
+    public String deleteProduct(@PathVariable int id){
+        productService.delete(productService.findById(id));
         return "redirect:/";
     }
 

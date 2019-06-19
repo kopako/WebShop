@@ -28,10 +28,4 @@ public class WebShopController {
         return "index";
     }
 
-    @PostMapping("/delete/{id}")
-    public String deleteProduct(@PathVariable int id){
-        productService.delete(productService.findById(id));
-        return "redirect:/";
-    }
-
 }
