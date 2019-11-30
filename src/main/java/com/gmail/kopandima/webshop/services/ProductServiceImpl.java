@@ -5,8 +5,10 @@ import com.gmail.kopandima.webshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
-public class ProductServiceImpl implements ProductService  {
+public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
@@ -20,12 +22,7 @@ public class ProductServiceImpl implements ProductService  {
     }
 
     public Product findById(Integer id) {
-        if (productRepository.findById(id).isPresent()) {
-            return productRepository.findById(id).get();
-        } else {
-            System.out.println("No such entity with id");
-            return null;
-        }
+        return productRepository.findById(id).get();
     }
 
     public void save(Product product) {

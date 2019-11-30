@@ -1,13 +1,12 @@
 package com.gmail.kopandima.webshop.services;
 
+import com.gmail.kopandima.webshop.models.User;
+
 import javax.security.sasl.AuthenticationException;
 
-import com.gmail.kopandima.webshop.models.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
+public interface UserService {
 
-public interface UserService extends UserDetailsService {
-
-    void save(User user);
+    void save(User customUser);
     User findByUsername(String username);
-    void register(User user) throws AuthenticationException;
+    void register(User customUser) throws AuthenticationException;
 }

@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Map;
-
 import javax.security.sasl.AuthenticationException;
 
 @Controller
@@ -22,14 +20,14 @@ public class RegistrationController {
     }
 
     @GetMapping("/registration")
-    public String registrationForm(User user) {
+    public String registrationForm() {
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String registration(User user, Map<String, Object> model) {
+    public String registration(User customUser) {
         try {
-            userService.register(user);
+            userService.register(customUser);
         } catch (AuthenticationException e) {
             return e.getMessage();
         }
